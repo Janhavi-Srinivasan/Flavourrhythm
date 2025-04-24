@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flavourythm</title>
+    <style>
+        
+        @import url('https://fonts.googleapis.com/css2?family=Parisienne&display=swap');
+
+        body {
+            background-image: url("BG.png"); 
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; 
+            height: 100vh;
+            margin: 0;
+            position: relative;
+        }
+
+        .container {
+            position: absolute;
+            top: 6%; 
+            text-align: center;
+            width: 100%;
+        }
+        @font-face {
+        font-family: 'MyFont';
+        src: url("fonts/CuteEasterPersonalUse-Wy8nV.ttf") format('opentype');
+        font-weight: normal;
+        font-style: normal;
+        }
+        h1 {
+            font-size: 90px; 
+            font-family: 'MyFont'; 
+            font-weight: bold;
+            color: white; 
+            text-shadow: 
+                -8px -8px 0 black,  
+                 2px -2px 0 black,  
+                -2px  2px 0 black,  
+                 2px  2px 0 black; 
+            transform: skew(-10deg); 
+            margin-top: 0; 
+        }
+        .food-emoji {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            animation: fall 1s linear forwards;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--x), var(--y)) scale(0);
+                opacity: 0;
+            }
+        }
+        .link1 {
+            position: absolute;
+            top: 515px;
+            left: 530px;
+            width: 220px;
+            height: 290px;
+        }
+        .link2 {
+            position: absolute;
+            top: 515px;
+            left: 780px;
+            width: 220px;
+            height: 290px;
+        }
+        .link3 {
+            position: absolute;
+            top: 15px;
+            left: 1255px;
+            width: 100px;
+            height: 35px;
+        }
+        .link4 {
+            position: absolute;
+            top: 15px;
+            left: 1360px;
+            width: 100px;
+            height: 35px;
+        }
+        .link5 {
+            position: absolute;
+            top: 3px;
+            left: 10px;
+            width: 40px;
+            height: 35px;
+        }
+        .link6 {
+            position: absolute;
+            top: 210px;
+            left: 490px;
+            width: 530px;
+            height: 70px;
+        }
+        .link7 {
+            position: absolute;
+            top: 310px;
+            left: 490px;
+            width: 530px;
+            height: 70px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Flavourythm</h1>
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 512 512" fill="red" style="position: absolute; top: -50; left: 10;">
+            <path d="M47.6 300.4L228.3 469.1c7.5 7 17.4 10.9 27.7 10.9s20.2-3.9 27.7-10.9L464.4 300.4c30.4-28.3 47.6-68 47.6-109.5v-5.8c0-69.9-50.5-129.5-119.4-141C347 36.5 300.6 51.4 268 84L256 96 244 84c-32.6-32.6-79-47.5-124.6-39.9C50.5 55.6 0 115.2 0 185.1v5.8c0 41.5 17.2 81.2 47.6 109.5z"/>
+          </svg>
+          
+    </div>
+    <a href="recipie.html" class="link1"></a>
+    <a href="joke.html" class="link2"></a>
+    <a href="index.html" class="link3"></a>
+    <a href="index.html" class="link4"></a>
+    <a href="fav.html" class="link5"></a>
+    <a href="trial.html" class="link6"></a>
+    <a href="trial.html" class="link7"></a>
+
+    <script>
+        document.addEventListener("mousemove", (event) => {
+        for (let i = 0; i < 3; i++) { // Adjust number of emojis per move
+            createFoodEmoji(event.clientX, event.clientY);
+        }
+    });
+    
+
+    function createFoodEmoji(x, y) {
+        const emojiList = ["🍕", "🍔", "🍣", "🍩", "🍉", "🍪", "🥑", "🍟", "🍎", "🌮"];
+        const foodEmoji = document.createElement("div");
+        foodEmoji.classList.add("food-emoji");
+        foodEmoji.textContent = emojiList[Math.floor(Math.random() * emojiList.length)];
+
+        foodEmoji.style.left = `${x}px`;
+        foodEmoji.style.top = `${y}px`;
+
+        const randomX = (Math.random() - 0.5) * 100; // Random horizontal movement
+        const randomY = Math.random() * 100 + 50; // Random fall distance
+        foodEmoji.style.setProperty("--x", `${randomX}px`);
+        foodEmoji.style.setProperty("--y", `${randomY}px`);
+
+        document.body.appendChild(foodEmoji);
+
+        setTimeout(() => {
+            foodEmoji.remove(); // Remove emoji after animation
+        }, 1000);
+    }
+    </script>
+</body>
+</html>
